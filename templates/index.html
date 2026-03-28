@@ -1,615 +1,1003 @@
 <head>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"></head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
 <body>
-<div id="header">
-<button onclick="clear1()" style="position: absolute; left: 0; font-size: 38px;">&lt;</button>
-仁方
-</div>
-<div id="content">
-</div>
-<div id="footer">
-<button onclick="click1()" style="position: absolute; right: 0; font-size: 38px;">▶</button>
-</div>
-<script>
+  <div id="header">
+    <button onclick="clear1()" style="position: absolute; left: 0; font-size: 38px;">&lt;</button>
+    仁方
+  </div>
+  <div id="content">
+  </div>
+  <div id="footer">
+    <button onclick="click1()" style="position: absolute; right: 0; font-size: 38px;">▶</button>
+  </div>
+  <script>
 var A = 0;
 var B = 0;
 var Lin = [[], []], Yu = [[], []], ren = [[], []], Hayes = [[], []],
-Dad = [[], []], Mom = [[], []], group1 = [[], [], []];
+  Dad = [[], []], Mom = [[], []], group1 = [[], [], []], group2 = [[], [], []], group3 = [[], [], []];
+
 var box0 = document.getElementById("header");
 var box1 = document.getElementById("content");
 var box2 = document.getElementById("footer");
+
 //故事本體
 function click1() {
-var buttons = document.querySelectorAll("button");
-for (var i = 2; i < buttons.length; i++) {
-buttons[i].parentNode.removeChild(buttons[i]);
+  var buttons = document.querySelectorAll("button");
+  for (var i = 2; i < buttons.length; i++) {
+    buttons[i].parentNode.removeChild(buttons[i]);
+  }
+  switch (B) {
+    case 0:
+      fetch("/get_data")
+       .then(response => response.json())
+       .then(data => {
+           var p1 = data.p0;
+           var s1 = data.s0;
+           addp(p1, s1,0.1);
+           ren[0].push(...p1);
+           ren[1].push(...s1);
+       })
+      break;
+
+    case 0.1:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(7, 0);
+        var p1 = data.p01;
+        var s1 = data.s01;
+        var m1 = data.m01;
+        addp2(p1, s1,m1, 0.2);
+        group1[0].push(...p1);
+        group1[1].push(...s1);
+        group1[2].push(...m1);
+      });
+    break;
+    
+  case 0.2:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p02 = data.p02;
+        var s02 = data.s02;
+        addp(p02, s02, 0.3);
+        ren[0].push(...p02);
+        ren[1].push(...s02);
+      });
+    break;
+  
+  case 0.3:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p03;
+        var s1 = data.s03;
+        var m1 = data.m03;
+        addp2(p1, s1,m1, 0.35,"答應","拒絕，去運動 ");
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    
+    break;
+  case 0.31:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p031;
+        var s1 = data.s031;
+        var m1 = data.m031;
+        addp2(p1, s1,m1, 0.4);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.35:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p035;
+        var s1 = data.s035;
+        var m1 = data.m035;
+        addp2(p1, s1,m1, 0.4);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.4:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p04 = data.p04;
+        var s04 = data.s04;
+        addp(p04, s04, 0.5);
+        Mom[0].push(...p04);
+        Mom[1].push(...s04);
+      });
+    break;
+  case 0.5:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p05 = data.p05;
+        var s05 = data.s05;
+        addp(p05, s05, 0.55, "答應 ", "拒絕");
+        ren[0].push(...p05);
+        ren[1].push(...s05);
+      });
+    break;
+  case 0.51:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p05 = data.p051;
+        var s05 = data.s051;
+        addp(p05, s05, 0.6);
+        ren[0].push(...p05);
+        ren[1].push(...s05);
+      });
+    break;
+  case 0.55:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p05 = data.p055;
+        var s05 = data.s055;
+        addp(p05, s05, 0.56);
+        ren[0].push(...p05);
+        ren[1].push(...s05);
+      });
+    break;
+  case 0.56:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(5, 0);
+        var p05 = data.p056;
+        var s05 = data.s056;
+        addp(p05, s05, 0.6);
+        Hayes[0].push(...p05);
+        Hayes[1].push(...s05);
+      });
+    break;
+  case 0.6:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p06;
+        var s1 = data.s06;
+        var m1 = data.m06;
+        addp2(p1, s1,m1, 0.7);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.7:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p07;
+        var s1 = data.s07;
+        var m1 = data.m07;
+        addp2(p1, s1,m1, 0.75, "答應", "拒絕（跟仁方打電動）");
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.71:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p071;
+        var s1 = data.s071;
+        var m1 = data.m071;
+        addp2(p1, s1,m1, 0.8);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.75:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p075;
+        var s1 = data.s075;
+        var m1 = data.m075;
+        addp2(p1, s1, m1, 0.8);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 0.8:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(5, 0);
+        var p08 = data.p08;
+        var s08 = data.s08;
+        addp(p08, s08, 0.9);
+        Hayes[0].push(...p08);
+        Hayes[1].push(...s08);
+      });
+    break;
+  case 0.9:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p09 = data.p09;
+        var s09 = data.s09;
+        addp(p09, s09, 0.95,"認真關心情況","敷衍關心");
+        Mom[0].push(...p09);
+        Mom[1].push(...s09);
+      });
+    break;
+  case 0.91:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(3, 0);
+        var p09 = data.p091;
+        var s09 = data.s091;
+        addp(p09, s09, 1);
+        Dad[0].push(...p09);
+        Dad[1].push(...s09);
+      });
+    break;
+  case 0.95:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(3, 0);
+        var p09 = data.p095;
+        var s09 = data.s095;
+        addp(p09, s09, 1);
+        Dad[0].push(...p09);
+        Dad[1].push(...s09);
+      });
+    break;
+  case 1:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p10;
+        var s1 = data.s10;
+        var m1 = data.m10;
+        addp2(p1, s1, m1, 1.1);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;  
+  case 1.1:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p11;
+        var s1 = data.s11;
+        addp(p1, s1, 1.2);
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;    
+  case 1.2:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p1 = data.p12;
+        var s1 = data.s12;
+        addp(p1, s1, 1.25,"要","不要");
+        Mom[0].push(...p1);
+        Mom[1].push(...s1);
+      });
+    break;    
+  case 1.21:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p1 = data.p121;
+        var s1 = data.s121;
+        addp(p1, s1, 1.22);
+        Mom[0].push(...p1);
+        Mom[1].push(...s1);
+      });
+    break;
+  case 1.22:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p122;
+        var s1 = data.s122;
+        var m1 = data.m122;
+        addp2(p1, s1, m1, 1.23);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 1.23:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p123;
+        var s1 = data.s123;
+        addp(p1, s1, 1.3);
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;
+  case 1.25:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p1 = data.p125;
+        var s1 = data.s125;
+        addp(p1, s1, 1.26);
+        Mom[0].push(...p1);
+        Mom[1].push(...s1);
+      });
+    break; 
+  case 1.26:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p126;
+        var s1 = data.s126;
+        addp(p1, s1, 1.27);
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;   
+  case 1.27:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(1, 0);
+        var p1 = data.p127;
+        var s1 = data.s127;
+        addp(p1, s1, 1.28);
+        Lin[0].push(...p1);
+        Lin[1].push(...s1);
+      });
+    break;  
+  case 1.28:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p1 = data.p128;
+        var s1 = data.s128;
+        addp(p1, s1, 1.29);
+        Mom[0].push(...p1);
+        Mom[1].push(...s1);
+      });
+    break;      
+  case 1.29:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p129;
+        var s1 = data.s129;
+        var m1 = data.m129;
+        addp2(p1, s1, m1, 1.3);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 1.3:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p13;
+        var s1 = data.s13;
+        addp(p1, s1, 1.35,"答應","拒絕");
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;  
+  case 1.31:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p131;
+        var s1 = data.s131;
+        addp(p1, s1, 1.35);
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;    
+  case 1.32:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p132;
+        var s1 = data.s132;
+        var m1 = data.m132;
+        addp2(p1, s1, m1, 1.4);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });
+    break;
+  case 1.35:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(6, 0);
+        var p1 = data.p135;
+        var s1 = data.s135;
+        addp(p1, s1, 1.36);
+        ren[0].push(...p1);
+        ren[1].push(...s1);
+      });
+    break;    
+  case 1.36:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(8, 0);
+        var p1 = data.p136;
+        var s1 = data.s136;
+        var m1 = data.m136;
+        addp2(p1, s1, m1, 1.4);
+        group2[0].push(...p1);
+        group2[1].push(...s1);
+        group2[2].push(...m1);
+      });     
+    break;    
+  case 1.4:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(7, 0);
+        var p1 = data.p14;
+        var s1 = data.s14;
+        var m1 = data.m14;
+        addp2(p1, s1, m1, 1.5);
+        group1[0].push(...p1);
+        group1[1].push(...s1);
+        group1[2].push(...m1);
+      });     
+    break;       
+  case 1.5:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(9, 0);
+        var p1 = data.p15;
+        var s1 = data.s15;
+        var m1 = data.m15;
+        addp2(p1, s1, m1, 1.55,"關心家人","不關心家人");
+        group3[0].push(...p1);
+        group3[1].push(...s1);
+        group3[2].push(...m1);
+      });     
+    break;  
+  case 1.51:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(9, 0);
+        var p1 = data.p151;
+        var s1 = data.s151;
+        var m1 = data.m151;
+        addp2(p1, s1, m1, 1.6);
+        group3[0].push(...p1);
+        group3[1].push(...s1);
+        group3[2].push(...m1);
+      });     
+    break;  
+  case 1.55:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(9, 0);
+        var p1 = data.p155;
+        var s1 = data.s155;
+        var m1 = data.m155;
+        addp2(p1, s1, m1, 1.6);
+        group3[0].push(...p1);
+        group3[1].push(...s1);
+        group3[2].push(...m1);
+      });     
+    break;           
+  
+  
+                                   
+  case 1.7:
+    fetch("/get_data")
+      .then(response => response.json())
+      .then(data => {
+        chat(4, 0);
+        var p1 = data.p12;
+        var s1 = data.s12;
+        addp(p1, s1, 1.3);
+        Mom[0].push(...p1);
+        Mom[1].push(...s1);
+      });
+    break;        
+      
+  }
 }
 
-switch (B) {
-case 0:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-var p0 = data.p0;
-var s0 = data.s0;
-addp(p0, s0, 0.1);
-ren[0].push(...p0);
-ren[1].push(...s0);
-});
-break;
-case 0.1:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p1 = data.p01;
-var s1 = data.s01;
-var m1 = data.m01;
-group1[0].push(...p1);
-group1[1].push(...s1);
-group1[2].push(...m1);
-});
-break;
-
-case 0.2:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p02 = data.p02;
-var s02 = data.s02;
-addp(p02, s02, 0.3);
-ren[0].push(...p02);
-ren[1].push(...s02);
-});
-break;
-case 0.3:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p03;
-var s1 = data.s03;
-var m1 = data.m03;
-addp2(p01, s01, 0.35,"","");
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.3:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p03;
-var s1 = data.s03;
-var m1 = data.m03;
-addp2(p01, s01, 0.35,"好啦","不要，等等要去運動 ");
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.31:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p031;
-var s1 = data.s031;
-var m1 = data.m031;
-addp2(p01, s01, 0.4);
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.35:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p035;
-var s1 = data.s035;
-var m1 = data.m035;
-addp2(p01, s01, 0.4);
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.4:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(4, 0);
-var p04 = data.p04;
-var s04 = data.s04;
-addp(p04, s04, 0.4);
-Mom[0].push(...p04);
-Mom[1].push(...s04);
-});
-break;
-case 0.5:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p05 = data.p05;
-var s05 = data.s05;
-addp(p05, s05, 0.55,"答應 ","拒絕");
-ren[0].push(...p05);
-ren[1].push(...s05);
-});
-break;
-case 0.51:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p05 = data.p051;
-var s05 = data.s051;
-addp(p05, s05, 0.6);
-ren[0].push(...p05);
-ren[1].push(...s05);
-});
-break;
-case 0.55:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p05 = data.p055;
-var s05 = data.s055;
-addp(p05, s05, 0.56);
-ren[0].push(...p05);
-ren[1].push(...s05);
-});
-break;
-case 0.56:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p05 = data.p055;
-var s05 = data.s055;
-addp(p05, s05, 0.6);
-ren[0].push(...p05);
-ren[1].push(...s05);
-});
-break;
-case 0.6:
-fetch("/get_data")
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p06;
-var s1 = data.s06;
-var m1 = data.m06;
-addp2(p01, s01, 0.7);
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.7:
-fetch("/get_data")
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p06;
-var s1 = data.s06;
-var m1 = data.m06;
-addp2(p01, s01, 0.75,"答應","拒絕（跟仁方打電動）");
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;case 0.71:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p071;
-var s1 = data.s071;
-var m1 = data.m071;
-addp2(p01, s01, 0.8);
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.75:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(8, 0);
-var p1 = data.p075;
-var s1 = data.s075;
-var m1 = data.m075;
-addp2(p01, s01, 0.8);
-group2[0].push(...p1);
-group2[1].push(...s1);
-group2[2].push(...m1);
-});
-break;
-case 0.8:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(5, 0);
-var p08 = data.p08;
-var s08 = data.s08;
-addp(p08, s08, 0.9);
-Hayes[0].push(...p08);
-Hayes[1].push(...s08);
-});
-break;
-case 0.9:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(4, 0);
-var p09 = data.p09;
-var s09 = data.s09;
-addp(p09, s09, 0.9);
-ren[0].push(...p09);
-ren[1].push(...s09);
-});
-break;
-case 0.91:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(3, 0);
-var p09 = data.p091;
-var s09 = data.s091;
-addp(p09, s09, 1);
-Dad[0].push(...p09);
-Dad[1].push(...s09);
-});
-break;
-case 0.95:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(3, 0);
-var p09 = data.p095;
-var s09 = data.s095;
-addp(p09, s09, 1);
-Dad[0].push(...p09);
-Dad[1].push(...s09);
-});
-break;
-case 1.0:
-fetch("/get_data")
-.then(response => response.json())
-.then(data => {
-chat(7, 0);
-var p10 = data.p10;
-var s10 = data.s10;
-addp(p10, s10, 1.0);
-ren[0].push(...p10);
-ren[1].push(...s10);
-});
-break;
-}
-}
 //新增對話
-function addp(p1, s1, B2 , A1 = "1", B1 = "2", delay = 1000) {
-var conversation = p1;
-var style1 = s1;
-for (var i = 0; i < conversation.length; i++) {
-(function (index) {
-setTimeout(function () {
-var messageContainer = document.createElement("div");
-messageContainer.classList.add("message", style1[index]);
-var p = document.createElement("p");
-p.textContent = conversation[index];
-messageContainer.appendChild(p);
-box1.appendChild(messageContainer);
-if (index === conversation.length - 1) {
-if (A1 !== "1") {
-var button1 = document.createElement("button");
-button1.innerHTML = A1;
-button1.onclick = function () {
-B += 0.01;
-click1()
-};
-var button2 = document.createElement("button");
-button2.innerHTML = B1;
-button2.onclick = function () {
-if (B2 != 0) {
-B = B2;
+function addp(p1, s1, B2 , A1 = "1", B1 = "2", delay = 2000) {
+  var conversation = p1;
+  var style1 = s1;
+  for (var i = 0; i < conversation.length; i++) {
+    (function (index) {
+      setTimeout(function () {
+
+        var messageContainer = document.createElement("div");
+        messageContainer.classList.add("message", style1[index]);
+
+        var p = document.createElement("p");
+        p.textContent = conversation[index];
+
+        messageContainer.appendChild(p);
+        box1.appendChild(messageContainer);
+
+        if (index === conversation.length - 1) {
+          if (A1 !== "1") {
+            var button1 = document.createElement("button");
+            button1.innerHTML = A1;
+            button1.onclick = function () {
+              B += 0.01;
+              click1()
+            };
+
+            var button2 = document.createElement("button");
+            button2.innerHTML = B1;
+            button2.onclick = function () {
+              B =B2;
+              click1();
+            };
+
+            box2.appendChild(button1);
+            box2.appendChild(button2);
+          } else if(B2 != 0){
+            B = B2;
+            click1();
+          }
+        }
+
+      }, delay * index);
+    })(i);
+  }
 }
-click1();
-};
-box2.appendChild(button1);
-box2.appendChild(button2);
-} else if(B2 != 0){
-B += B2;
-click1();
-}
-}
-}, delay * index);
-})(i);
-}
-}
+
 //新增群組對話
-function addp2(p1, s1, m1, B2 = 0,A1 = "1", B1 = "2", delay = 1000) {
-var conversation = p1;
-var style1 = s1;
-var name1 = m1;
-for (var i = 0; i < conversation.length; i++) {
-(function (index) {
-setTimeout(function () {
-const image1 = document.createElement("img");
-if (style1[index] === "left") {
-var p = document.createElement("p");
-switch (name1[index]) {
-case "ren":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "仁方";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "Yu":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "余左容";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "Lin":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "林辛怡";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "Mom":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "媽媽";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "Dad":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "爸爸";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "teacher":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "老師";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "studentA":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "同學 A";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "studentB":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "同學 B";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "studentC":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "同學 C";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
-case "studentD":
-image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
-p.textContent = "同學 D";
-p.appendChild(document.createElement("br"));
-box1.appendChild(image1);
-box1.appendChild(p);
-break;
+function addp2(p1, s1, m1, B2 ,A1 = "1", B1 = "2",  delay = 2000) {
+  var conversation = p1;
+  var style1 = s1;
+  var name1 = m1;
+  for (var i = 0; i < conversation.length; i++) {
+    (function (index) {
+      setTimeout(function () {
+        const image1 = document.createElement("img");
+        if (style1[index] == "left") {
+          var p = document.createElement("p");
+          switch (name1[index]) {
+            case "ren":
+              image1.src ="{{ url_for('static', filename='images/ren.png') }}" ;
+              p.textContent = "仁方";
+              p.appendChild(document.createElement("br"));
+              box1.appendChild(image1);
+              box1.appendChild(p);
+              break;
+            case "Yu":
+                image1.src = "{{ url_for('static', filename='images/Yu.png') }}";
+                p.textContent = "余左容";
+                p.appendChild(document.createElement("br"));
+                box1.appendChild(image1);
+                box1.appendChild(p);
+                break;
+          case "Lin":
+            image1.src = "{{ url_for('static', filename='images/Lin.png') }}";
+            p.textContent = "林辛怡";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "Mom":
+            image1.src = "{{ url_for('static', filename='images/Mom.png') }}";
+            p.textContent = "媽媽";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "Dad":
+            image1.src = "{{ url_for('static', filename='images/Dad.png') }}";
+            p.textContent = "爸爸";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "teacher":
+            image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
+            p.textContent = "老師";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "studentA":
+            image1.src ="{{ url_for('static', filename='images/A.png') }}";
+            p.textContent = "同學 A";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "studentB":
+            image1.src ="{{ url_for('static', filename='images/B.png') }}";
+            p.textContent = "同學 B";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "studentC":
+            image1.src ="{{ url_for('static', filename='images/C.png') }}";
+            p.textContent = "同學 C";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          case "studentD":
+            image1.src ="{{ url_for('static', filename='images/D.png') }}";
+            p.textContent = "同學 D";
+            p.appendChild(document.createElement("br"));
+            box1.appendChild(image1);
+            box1.appendChild(p);
+            break;
+          }
+        }
+
+        var messageContainer = document.createElement("div");
+        messageContainer.classList.add("message", style1[index]);
+
+        var p = document.createElement("p");
+        p.textContent = conversation[index];
+
+        messageContainer.appendChild(p);
+        box1.appendChild(messageContainer);
+
+        if (index === conversation.length - 1) {
+          if (A1 !== "1") {
+            var button1 = document.createElement("button");
+            button1.innerHTML = A1;
+            button1.onclick = function () {
+              B += 0.01;
+              click1()
+            };
+
+            var button2 = document.createElement("button");
+            button2.innerHTML = B1;
+            button2.onclick = function () {
+              B = B2;
+              
+              click1();
+            };
+
+            box2.appendChild(button1);
+            box2.appendChild(button2);
+          } else if(B2 != 0){
+            B = B2;
+            click1();
+          }
+        }
+
+      }, delay * index);
+    })(i);
+  }
 }
-}
-var messageContainer = document.createElement("div");
-messageContainer.classList.add("message", style1[index]);
-var p = document.createElement("p");
-p.textContent = conversation[index];
-messageContainer.appendChild(p);
-box1.appendChild(messageContainer);
-if (index === conversation.length - 1) {
-if (A1 !== "1") {
-var button1 = document.createElement("button");
-button1.innerHTML = A1;
-button1.onclick = function () {
-B += 0.1;
-click1()
-};
-var button2 = document.createElement("button");
-button2.innerHTML = B1;
-button2.onclick = function () {
-B += 0.2;
-if (B2 != 0) {
-B = B2;
-}
-click1();
-};
-box2.appendChild(button1);
-box2.appendChild(button2);
-} else if(B2 != 0){
-B += B2;
-click1();
-}
-}
-}, delay * index);
-})(i);
-}
-}
+
 //新增聊天室名字
 function addh(text) {
-var span = document.createElement("span");
-span.textContent = text;
-box0.appendChild(span);
+  var span = document.createElement("span");
+  span.textContent = text;
+  box0.appendChild(span);
 }
+
 //新增按鈕
-function addb(A1, B1, B2 = 0) {
-var button1 = document.createElement("button");
-button1.innerHTML = A1;
-button1.onclick = function () {
-B += 0.1;
-click1()
-};
-var button2 = document.createElement("button");
-button2.innerHTML = B1;
-button2.onclick = function () {
-B += 0.2;
-if (B2 != 0) {
-B = B2;
+function addb( B2 ,A1, B1) {
+  var button1 = document.createElement("button");
+  button1.innerHTML = A1;
+  button1.onclick = function () {
+    B += 0.1;
+    click1()
+  };
+
+  var button2 = document.createElement("button");
+  button2.innerHTML = B1;
+  button2.onclick = function () {
+    B = B2;
+    click1();
+  };
+
+  box2.appendChild(button1);
+  box2.appendChild(button2);
 }
-click1();
-};
-box2.appendChild(button1);
-box2.appendChild(button2);
-}
+
 //首頁
 function clear1() {
-// 清空div中的文字
-document.getElementById("header").innerHTML = "";
-document.getElementById("content").innerHTML = "";
-document.getElementById("footer").innerHTML = "";
-box2.style.backgroundColor = "white";
-// 創建按鈕 1
-var button1 = document.createElement("button");
-button1.innerHTML = "1";
-button1.onclick = function () {
-chat(1);
-};
-box1.appendChild(button1);
-// 創建按鈕 2
-var button2 = document.createElement("button");
-button2.innerHTML = "2";
-button2.onclick = function () {
-chat(2);
-};
-box1.appendChild(button2);
-// 創建按鈕 3
-var button3 = document.createElement("button");
-button3.innerHTML = "3";
-button3.onclick = function () {
-chat(3);
-};
-box1.appendChild(button3);
-// 創建按鈕 4
-var button4 = document.createElement("button");
-button4.innerHTML = "4";
-button4.onclick = function () {
-chat(4);
-};
-box1.appendChild(button4);
-// 創建按鈕 5
-var button5 = document.createElement("button");
-button5.innerHTML = "5";
-button5.onclick = function () {
-chat(5);
-};
-box1.appendChild(button5);
-// 創建按鈕 6
-var button6 = document.createElement("button");
-button6.innerHTML = "仁方";
-button6.onclick = function () {
-chat(6);
-};
-box1.appendChild(button6);
-//7
-var button7 = document.createElement("button");
-button7.innerHTML = "7";
-button7.onclick = function () {
-chat(7);
-};
-box1.appendChild(button7);
-//8
-var button8 = document.createElement("button");
-button8.innerHTML = "8";
-button8.onclick = function () {
-chat(8);
-};
-box1.appendChild(button8);
-//9
-var button9 = document.createElement("button");
-button9.innerHTML = "9";
-button9.onclick = function () {
-chat(9);
-};
-box1.appendChild(button9);
+  // 清空div中的文字
+  document.getElementById("header").innerHTML = "";
+  document.getElementById("content").innerHTML = "";
+  document.getElementById("footer").innerHTML = "";
+  box2.style.backgroundColor = "white";
+
+  // 創建按鈕 1
+  var button1 = document.createElement("button");
+  button1.innerHTML = "林欣怡";
+  button1.onclick = function () {
+    chat(1,1);
+  };
+  box1.appendChild(button1);
+
+  // 創建按鈕 2
+  var button2 = document.createElement("button");
+  button2.innerHTML = "俞左容";
+  button2.onclick = function () {
+    chat(2,1);
+  };
+  box1.appendChild(button2);
+
+  // 創建按鈕 3
+  var button3 = document.createElement("button");
+  button3.innerHTML = "爸爸";
+  button3.onclick = function () {
+    chat(3,1);
+  };
+  box1.appendChild(button3);
+
+  // 創建按鈕 4
+  var button4 = document.createElement("button");
+  button4.innerHTML = "媽媽";
+  button4.onclick = function () {
+    chat(4,1);
+  };
+  box1.appendChild(button4);
+
+  // 創建按鈕 5
+  var button5 = document.createElement("button");
+  button5.innerHTML = "Hayes";
+  button5.onclick = function () {
+    chat(5,1);
+  };
+  box1.appendChild(button5);
+
+  // 創建按鈕 6
+  var button6 = document.createElement("button");
+  button6.innerHTML = "仁方";
+  button6.onclick = function () {
+    chat(6,1);
+  };
+  box1.appendChild(button6);
+
+  //7
+  var button7 = document.createElement("button");
+  button7.innerHTML = "群";
+  button7.onclick = function () {
+    chat(7,1);
+  };
+  box1.appendChild(button7);
+  //8
+  var button8 = document.createElement("button");
+  button8.innerHTML = "朋友群";
+  button8.onclick = function () {
+    chat(8,1);
+  };
+  box1.appendChild(button8);
+  //9
+  var button9 = document.createElement("button");
+  button9.innerHTML = "家人群";
+  button9.onclick = function () {
+    chat(9,1);
+  };
+  box1.appendChild(button9);
+
 }
+
 //聊天室
-function chat(n, e = 1) {
-document.getElementById("header").innerHTML = "";
-document.getElementById("content").innerHTML = "";
-document.getElementById("footer").innerHTML = "";
-box2.style.backgroundColor = "#FFC78E";
-var button1 = document.createElement("button");
-button1.innerHTML = "&lt;";
-button1.onclick = function () {
-clear1(1)
-};
-button1.style.position = "absolute";
-button1.style.left = "0";
-button1.style.fontSize = "38px";
-box0.appendChild(button1);
-switch (n) {
-case 1:
-addh("林欣怡")
-addp(Lin[0], Lin[1], 0,"1", 0, 0);
-break;
-case 2:
-addh("俞左容")
-addp(Yu[0], Yu[1], 0,"1", 0, 0);
-break;
-case 3:
-addh("爸爸")
-addp(Dad[0], Dad[1], 0,"1", 0, 0);
-break;
-case 4:
-addh("媽媽")
-addp(Mom[0], Mom[1], 0,"1", 0, 0);
-break;
-case 5:
-addh("Hayes")
-addp(Hayes[0], Hayes[1], 0,"1", 0, 0);
-break;
-case 6:
-addh("仁方")
-addp(ren[0], ren[1], 0,"1", 0, 0);
-break;
-case 7:
-addh("群")
-addp2(group1[0], group1[1], group1[2], 0,"1", 0, 0);
-if (B == 0.1 && e != 0) {
-addb(1, 2)
+function chat(n, e = 0) {
+  document.getElementById("header").innerHTML = "";
+  document.getElementById("content").innerHTML = "";
+  document.getElementById("footer").innerHTML = "";
+  box2.style.backgroundColor = "#FFC78E";
+
+  var button1 = document.createElement("button");
+  button1.innerHTML = "&lt;";
+  button1.onclick = function () {
+    clear1(1)
+  };
+  button1.style.position = "absolute";
+  button1.style.left = "0";
+  button1.style.fontSize = "38px";
+  box0.appendChild(button1);
+  if(e!=0){
+  switch (B) {
+      case 0.3:
+          if(n==8){
+              addb(0.35,"答應","拒絕，去運動 ");
+          }
+        break;
+      case 0.5:
+          if(n==6){
+              addb(0.55, "答應 ", "拒絕");
+          }
+        break;
+      
+      case 0.7:
+          if(n==8){
+              addb( 0.75, "答應", "拒絕（跟仁方打電動）");
+          }
+        break;
+      
+      case 0.9:
+          if(n==4){
+              addb( 0.95,"認真關心情況","敷衍關心");
+          }
+      break;
+      }
+  }
+  switch (n) {
+    case 1:
+      addh("林欣怡")
+      addp(Lin[0], Lin[1], 0,"1", 0, 0);
+      break;
+
+    case 2:
+      addh("俞左容")
+      addp(Yu[0], Yu[1],  0,"1", 0, 0);
+      break;
+
+    case 3:
+      addh("爸爸")
+      addp(Dad[0], Dad[1],  0,"1", 0, 0);
+      break;
+
+    case 4:
+      addh("媽媽")
+      addp(Mom[0], Mom[1],  0,"1", 0, 0);
+      break;
+
+    case 5:
+      addh("Hayes")
+      addp(Hayes[0], Hayes[1],  0,"1", 0, 0);
+      break;
+
+    case 6:
+      addh("仁方")
+      addp(ren[0], ren[1],  0,"1", 0, 0);
+      break;
+
+    case 7:
+      addh("群")
+      addp2(group1[0], group1[1], group1[2],  0,"1", 0, 0);
+      break;
+    case 8:
+        addh("朋友群")
+        addp2(group2[0], group2[1], group2[2], 0,"1", 0, 0);
+        break;
+    case 9:
+        addh("家人群")
+        addp2(group3[0], group3[1], group3[2], 0,"1", 0, 0);
+        break;
+      } 
 }
-break;
-case 8:
-addh("朋友群")
-addp2(group2[0], group2[1], group2[2], 0,"1", 0, 0);
-break;
-case 9:
-addh("家人群")
-addp2(group3[0], group3[1], group3[2], 0,"1", 0, 0);
-break;
-}
-}
-</script>
+  </script>
+  <style>
+  /*
+   * cwTeXYen (Chinese Traditional) http://www.google.com/fonts/earlyaccess
+   */
+  @font-face {
+    font-family: 'cwTeXYen';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.eot);
+    src: url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.eot?#iefix) format('embedded-opentype'),
+         url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff2) format('woff2'),
+         url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.woff) format('woff'),
+         url(//fonts.gstatic.com/ea/cwtexyen/v3/cwTeXYen-zhonly.ttf) format('truetype');
+  }
+
+  #header {
+    font-family: 'cwTeXYen', sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #ff7f50;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  #content {
+    font-family: 'cwTeXYen', sans-serif;
+    margin-top: 50px; 
+    margin-bottom: 50px; 
+    height: calc(100vh - 100px); 
+    overflow: auto;
+    background-color: #faf0e6;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #footer {
+    font-family: 'cwTeXYen', sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #ffa07a;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: inline;
+  }
+
+
+
+  .right {
+    justify-content: flex-end; 
+    align-self: flex-end;
+  }
+
+  .left {
+    align-self: flex-start;
+  }
+
+  .message {
+    display: flex;
+  }
+
+  .message p {
+    background-color: #ffdab9; 
+    font-size: 20px; 
+    padding: 5px 5px;
+    margin: 5px;
+    border-radius: 50px;
+    word-wrap: break-word;
+  }
+
+  </style>
 </body>
 
