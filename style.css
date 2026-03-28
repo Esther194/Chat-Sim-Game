@@ -18,7 +18,7 @@
   top: 0;
   width: 100%;
   height: 50px;
-  background-color: #FFC78E;
+  background-color: #ff7f50;
   text-align: center;
   font-size: 50px;
 }
@@ -29,6 +29,7 @@
   margin-bottom: 50px; 
   height: calc(100vh - 100px); 
   overflow: auto; /* 設定超過內容高度時出現捲軸 */
+  background-color: #faf0e6;
 }
 
 #footer {
@@ -37,27 +38,25 @@
   bottom: 0;
   width: 100%;
   height: 50px;
-  background-color: #FFC78E;
+  background-color: #ffa07a;
   text-align: center;
   font-size: 50px;
 }
 
-pre {
-  background-color: #FFFF93;
-  font-size: 20px;
-  display: inline;
-}
+
 
 .right {
-  background-color: #FFDCB9;
+  background-color: #ffdab9;
   font-size: 20px;
   display: inline; 
   float: right;
+  width: calc(100% - 4cm);
+  border-radius: 50px 0px 0px 50px;
 }
-
 .left {
-  background-color:  #FFFF93;
+  background-color:  #ffdab9;
   font-size: 20px;
   display: inline; 
   float: left;
+  border-radius: 0px 50px 50px 0px;
 }
