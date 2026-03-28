@@ -1,7 +1,7 @@
 var A = [0, 0, 0, 0, 0, 0, 0];
 var B = 2;
 var Lin=[[],[]],Yu=[[],[]],ren=[[],[]],Hayes=[[],[]],
-  Dad=[[],[]],Mom=[[],[]];
+  Dad=[[],[]],Mom=[[],[]],group1=[[],[],[]];
 
 var box0 = document.getElementById("header");
 var box1 = document.getElementById("content");
@@ -190,18 +190,20 @@ function click1(n, plus,f=0) {
     case 3:
       var p1 = [
         "設定超過內容高度時出現捲軸3",
-        "設定超過內容高度時出現捲軸3",
         "設定超過內容高度時出現捲軸3"
       ];
       var s1 = [
         "left",
-        "right",
-        "left",
-        "right",
-        "left",
-        "right",
+        "right"
       ]
-      addp(p1,s1, 0, 2, 0, 1);
+      var m1 = [
+        "ren",
+        "ren"
+      ]
+      addp2(p1,s1,m1, 0, 2, 0, 1);
+      group1[0].push(...p1);
+      group1[1].push(...s1);
+      group1[2].push(...m1);
       break;
       
     case 4:
@@ -262,14 +264,92 @@ function click1(n, plus,f=0) {
 function addp(p1, s1,n1, plus1 = 0, n2 = 0, plus2 = 0,A1=01,B1=02,B2=0,delay = 1000) {
   var conversation = p1;
   var style1=s1;
+  for (var i = 0; i < (conversation.length) * 2; i++) {
+    (function(index) {
+      setTimeout(function() {
+        
+        if(index%2===0){
+          var p = document.createElement("p");
+          var span = document.createElement("span");
+          span.textContent = conversation[index];
+          span.classList.add(style1[index]);
+          p.appendChild(span);
+          box1.appendChild(p);
+        }else{
+          var p = document.createElement("p");
+          var span = document.createElement("span");
+          span.textContent = 1 * 2;
+          span.classList.add(style1[index]);
+          p.appendChild(document.createElement("br"));
+          box1.appendChild(p);
+        }
+        
+        
+        if (index === conversation.length - 1 && n1 !== 7) {
+          var button1 = document.createElement("button");
+          button1.innerHTML = A1;
+          button1.onclick = function() {
+            B += 0.1;
+            click1(n1, plus1);
+          };
+
+          var button2 = document.createElement("button");
+          button2.innerHTML = B1;
+          button2.onclick = function() {
+            B += 0.2;
+            if(B2 != 0){
+              B=B2;
+            }
+            click1(n2,plus2);
+            
+          };
+
+          box2.appendChild(button1);
+          box2.appendChild(button2);
+        }
+
+      }, delay * index);
+    })(i);
+  }
+}
+
+//新增群組對話
+function addp2(p1,s1,m1,n1, plus1 = 0, n2 = 0, plus2 = 0,A1=01,B1=02,B2=0,delay = 1000) {
+  var conversation = p1;
+  var style1=s1;
+  var name1=m1;
   for (var i = 0; i < conversation.length; i++) {
     (function(index) {
       setTimeout(function() {
+        const image1 = document.createElement("img");
+        if(style1[index] === "left"){
+          var p = document.createElement("p");
+          switch(name1[index]){
+            case "ren":
+               image1.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRifgSLM3wjL5doJrM_-MrUUDRbehvGlHA_NQ&usqp=CAU";
+              p.textContent ="仁方";
+              p.appendChild(document.createElement("br"));
+              box1.appendChild(image1);
+              box1.appendChild(p);
+              break;
+            case "Yu":
+              image1.src = "path/to/your/image.jpg";  
+              box1.appendChild(image1);
+              break;
+            case "Lin":
+              image1.src = "path/to/your/image.jpg";
+              box1.appendChild(image1);
+              break;
+         }
+        }
+        
         var p = document.createElement("p");
         var span = document.createElement("span");
+        p.appendChild(document.createElement("br"));
         span.textContent = conversation[index];
         span.classList.add(style1[index]);
         p.appendChild(span);
+        
         p.appendChild(document.createElement("br"));
         box1.appendChild(p);
 
@@ -367,6 +447,14 @@ function clear1() {
     chat(6);
   };
   box1.appendChild(button6);
+  
+  //7
+  var button7 = document.createElement("button");
+  button7.innerHTML = "7";
+  button7.onclick = function() {
+    chat(7);
+  };
+  box1.appendChild(button7);
 }
 
 
@@ -398,7 +486,7 @@ function chat(n){
         addh("俞左容")
         addp(Yu[0],Yu[1],7,0,0,0,0,0,0,0);
         break;
-
+      
       case 3:
         addh("爸爸")
         addp(Dad[0],Dad[1],7,0,0,0,0,0,0,0);
@@ -417,6 +505,10 @@ function chat(n){
       case 6:
         addh("仁方")
         addp(ren[0],ren[1],7,0,0,0,0,0,0,0);
+        break;
+      case 7:
+        addh("群")
+        addp2(group1[0],group1[1],group1[2],7,0,0,0,0,0,0,0);
         break;
   }
 }
