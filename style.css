@@ -28,8 +28,10 @@
   margin-top: 50px; 
   margin-bottom: 50px; 
   height: calc(100vh - 100px); 
-  overflow: auto; /* 設定超過內容高度時出現捲軸 */
+  overflow: auto;
   background-color: #faf0e6;
+  display: flex;
+  flex-direction: column;
 }
 
 #footer {
@@ -42,30 +44,34 @@
   text-align: center;
   font-size: 50px;
 }
-img{
-  border-radius:50%;
+
+img {
+  border-radius: 50%;
   width: 30px;
   height: 30px;
   display: inline;
 }
 
-p{
-  font-size: 30px;
-  display: inline; 
-}
+
 
 .right {
-  background-color: #ffdab9;
-  font-size: 20px;
-  display: inline; 
-  float: right;
-  width: calc(60%);
-  border-radius: 50px 0px 0px 50px;
+  justify-content: flex-end; 
+  align-self: flex-end;
 }
+
 .left {
-  background-color:  #ffdab9;
-  font-size: 20px;
-  display: inline; 
-  float: left;
-  border-radius: 0px 50px 50px 0px;
+  align-self: flex-start;
+}
+
+.message {
+  display: flex;
+}
+
+.message p {
+  background-color: #ffdab9; 
+  font-size: 20px; 
+  padding: 5px 5px;
+  margin: 5px;
+  border-radius: 50px;
+  word-wrap: break-word;
 }
