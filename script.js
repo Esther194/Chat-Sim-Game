@@ -1,13 +1,18 @@
 var A = [0, 0, 0, 0, 0, 0, 0];
 var B = 0;
-var Lin=[],Yu=[],ren=[],Hayes=[],Dad=[],Mom=[];
+var Lin=["123","456"],Yu=[],ren=[],Hayes=[],Dad=[],Mom=[];
 
-function click1(n, plus) {
-  var button1 = document.querySelector("button");
-  button1.parentNode.removeChild(button1);
-  var button2 = document.querySelector("button");
-  button2.parentNode.removeChild(button2);
+var box0 = document.getElementById("header");
+var box1 = document.getElementById("content");
+var box2 = document.getElementById("footer");
+//故事本體
+function click1(n, plus,f=0) {
+  var buttons = document.querySelectorAll("button");
+  for (var i = 2; i < buttons.length; i++) {
+    buttons[i].parentNode.removeChild(buttons[i]);
+  }
   
+   
   A[n] += plus;
   
   var container = document.getElementById("footer");
@@ -33,6 +38,9 @@ function click1(n, plus) {
         "設定超過內容高度時出現捲軸1"
       ];
       addp(p1, 0, 2, 0, 1);
+      
+      Yu=Yu.concat(p1);
+      
       if (A[0] === 3) {
         A[2] += 2;
       } else {
@@ -91,11 +99,9 @@ function click1(n, plus) {
 
   
 }
-
+//新增對話
 function addp(p1, n1, plus1 = 0, n2 = 0, plus2 = 0, delay = 500) {
   var conversation = p1;
-  var box1 = document.getElementById("content");
-  var box2 = document.getElementById("footer");
   var delay = delay;
 
   for (var i = 0; i < conversation.length; i++) {
@@ -107,7 +113,6 @@ function addp(p1, n1, plus1 = 0, n2 = 0, plus2 = 0, delay = 500) {
         span.classList.add("left");
         p.appendChild(span);
         p.appendChild(document.createElement("br"));
-
         box1.appendChild(p);
 
         if (index === conversation.length - 1 && n1 !== 7) {
@@ -134,3 +139,117 @@ function addp(p1, n1, plus1 = 0, n2 = 0, plus2 = 0, delay = 500) {
   }
 }
 
+//新增聊天室名字
+function addh(text) {
+  var span = document.createElement("span");
+  span.textContent = text;
+  box0.appendChild(span);
+}
+
+
+//首頁
+function clear1() {
+      // 清空div中的文字
+  document.getElementById("header").innerHTML = "";
+  document.getElementById("content").innerHTML = "";
+  document.getElementById("footer").innerHTML = "";
+  box2.style.backgroundColor = "white";
+  
+  // 創建按鈕 1
+  var button1 = document.createElement("button");
+  button1.innerHTML = "1";
+  button1.onclick = function() {
+    chat(1);
+  };
+  box1.appendChild(button1);
+
+  // 創建按鈕 2
+  var button2 = document.createElement("button");
+  button2.innerHTML = "2";
+  button2.onclick = function() {
+    chat(2);
+  };
+  box1.appendChild(button2);
+
+  // 創建按鈕 3
+  var button3 = document.createElement("button");
+  button3.innerHTML = "3";
+  button3.onclick = function() {
+    chat(3);
+  };
+  box1.appendChild(button3);
+
+// 創建按鈕 4
+  var button4 = document.createElement("button");
+  button4.innerHTML = "4";
+  button4.onclick = function() {
+    chat(4);
+  };
+  box1.appendChild(button4);
+
+  // 創建按鈕 5
+  var button5 = document.createElement("button");
+  button5.innerHTML = "5";
+  button5.onclick = function() {
+    chat(5);
+  };
+  box1.appendChild(button5);
+
+  // 創建按鈕 6
+  var button6 = document.createElement("button");
+  button6.innerHTML = "6";
+  button6.onclick = function() {
+    chat(6);
+  };
+  box1.appendChild(button6);
+}
+
+//聊天室
+function chat(n){
+  document.getElementById("header").innerHTML = "";
+  document.getElementById("content").innerHTML = "";
+  document.getElementById("footer").innerHTML = "";
+  box2.style.backgroundColor = "#FFC78E";
+  
+  var button1 = document.createElement("button");
+  button1.innerHTML = "&lt;";
+  button1.onclick = function() {
+    clear1(1)
+  };
+  button1.style.position = "absolute";
+  button1.style.left = "0";
+  button1.style.fontSize = "38px";
+  box0.appendChild(button1);
+  
+  switch (n) {
+      case 1:
+        addh("林欣怡")
+        addp(Lin,7,0,0,0,0);
+        break;
+
+      case 2:
+        addh("俞左容")
+        addp(Yu,7,0,0,0,0);
+        break;
+
+      case 3:
+        addh("父親")
+        addp(Dad,7,0,0,0,0);
+        break;
+      
+      case 4:
+        addh("母親")
+        addp(Mom,7,0,0,0,0);
+        break;
+      
+      case 5:
+        addh("Hayes")
+        addp(Hayes,7,0,0,0,0);
+        break;
+      
+      case 6:
+        addh("仁方")
+        addp(ren,7,0,0,0,0);
+        break;
+  }
+}
